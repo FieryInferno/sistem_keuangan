@@ -78,14 +78,14 @@ class UserController extends Controller
     return redirect('karyawan')->with('success', 'Berhasil tambah karyawan.');
   }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  public function destroy($id)
+  {
+    $user = User::find($id);
+
+    // dd($user);
+
+    $user->delete();
+    
+    return redirect('karyawan')->with('success', 'Berhasil hapus karyawan.');
+  }
 }
