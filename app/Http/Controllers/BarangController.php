@@ -41,7 +41,7 @@ class BarangController extends Controller
     return view('form_barang', [
       'title' => 'Barang',
       'active' => 'barang',
-      'user' => $barang,
+      'barang' => $barang,
     ]);
   }
 
@@ -49,31 +49,17 @@ class BarangController extends Controller
   {
     $request->validate([
       'nama' => 'required',
-      'username' => 'required',
+      'harga' => 'required',
     ]);
+    
+    $barang->update($request->all());
 
-    $barang->nama = $request->nama;
-    $barang->username = $request->username;
-
-    if ($request->password) {
-      $barang->password = Hash::make($request->password);
-    }
-
-    $barang->role = 'barang';
-
-    $barang->save();
-
-    return redirect('barang')->with('success', 'Berhasil tambah barang.');
+    return redirect('barang')->with('success', 'Berhasil edit barang.');
   }
 
-  public function destroy($id)
+  public function destroy(Barang $barang)
   {
-    $barang = Barang::find($id);
-
-    // dd($barang);
-
     $barang->delete();
-    
     return redirect('barang')->with('success', 'Berhasil hapus barang.');
   }
 }
