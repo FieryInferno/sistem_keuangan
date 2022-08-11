@@ -26,13 +26,8 @@ class PemasukanController extends Controller
 
   public function store(Request $request)
   {
-    $request->validate([
-      'nama' => 'required',
-      'harga' => 'required',
-    ]);
-
+    $request->validate(['pemasukan' => 'required']);
     Pemasukan::create($request->all());
-
     return redirect('pemasukan')->with('success', 'Berhasil tambah pemasukan.');
   }
 
