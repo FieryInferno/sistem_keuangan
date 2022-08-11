@@ -57,14 +57,37 @@
           <li class="nav-item">
             <a href="{{url('karyawan')}}" class="nav-link {{$active === 'karyawan' ? 'active' : ''}}">
               <i class="fas fa-user nav-icon"></i>
-              <p>Karyawan</p>
+              <p>DAta Karyawan</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ url('barang') }}" class="nav-link {{$active === 'barang' ? 'active' : ''}}">
               <i class="fas fa-th nav-icon"></i>
-              <p>Barang</p>
+              <p>Data Barang</p>
             </a>
+          </li>
+          <li class="nav-item {{ in_array($active, ['pemasukan', 'pengeluaran']) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ in_array($active, ['pemasukan', 'pengeluaran']) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Data Transaksi
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('pemasukan') }}" class="nav-link {{ $active === 'pemasukan' ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Pemasukan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('pengeluaran') }}" class="nav-link {{ $active === 'barang' ? 'pengeluaran' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Pengeluaran</p>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
