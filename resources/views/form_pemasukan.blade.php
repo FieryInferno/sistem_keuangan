@@ -9,7 +9,7 @@
             'pemasukan' => [
               'label' => 'Pemasukan',
               'type' => 'input',
-              'value' => isset($pemasukan) ? $pemasukan->nama : null,
+              'value' => isset($pemasukan) ? $pemasukan->pemasukan : null,
             ],
           ],
           'mode' => isset($pemasukan) ? 'edit' : null,
