@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,60 +17,66 @@ class UserController extends Controller
     ]);
   }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+  public function create()
+  {
+    return view('form_karyawan', [
+      'title' => 'Karyawan',
+      'active' => 'karyawan',
+    ]);
+  }
+
+  public function store(Request $request)
+  {
+    $request->validate([
+      'nama' => 'required',
+      'username' => 'required',
+      'password' => 'required',
+    ]);
+
+    $user = new User;
+    $user->nama = $request->nama;
+    $user->username = $request->username;
+    $user->password = Hash::make($request->password);
+    $user->role = 'karyawan';
+
+    $user->save();
+
+    return redirect('karyawan')->with('success', 'Berhasil tambah karyawan.');
+  }
+
+  public function edit($id)
+  {
+    $user = User::find($id);
+
+    return view('form_karyawan', [
+      'title' => 'Karyawan',
+      'active' => 'karyawan',
+      'user' => $user,
+    ]);
+  }
+
+  public function update(Request $request, $id)
+  {
+    $request->validate([
+      'nama' => 'required',
+      'username' => 'required',
+    ]);
+
+    $user = User::find($id);
+
+    $user->nama = $request->nama;
+    $user->username = $request->username;
+
+    if ($request->password) {
+      $user->password = Hash::make($request->password);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    $user->role = 'karyawan';
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    $user->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    return redirect('karyawan')->with('success', 'Berhasil tambah karyawan.');
+  }
 
     /**
      * Remove the specified resource from storage.

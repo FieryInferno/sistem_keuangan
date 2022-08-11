@@ -1,4 +1,4 @@
-<div class="card" style="background-color: #58dfa0;box-shadow: 0 0 0;">
+<div class="card">
   <form method="post" action="{{$form['action']}}" enctype="multipart/form-data">
     @csrf
     {{ $form['mode'] === 'edit' ? method_field('PUT') : '' }}
@@ -23,6 +23,14 @@
                 placeholder="Ketik disini..."
                 name="{{$key}}"
                 value="{{$value['value']}}"
+              >
+              @break
+            @case('password')
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Ketik disini..."
+                name="{{$key}}"
               >
               @break
             @case('date')
@@ -59,8 +67,8 @@
         </div>
       @endforeach
     </div>
-    <div class="card-footer text-center">
-      <button type="submit" class="btn btn-light">{{$form['buttonText']}}</button>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
   </form>
 </div>
