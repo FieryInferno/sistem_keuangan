@@ -42,13 +42,8 @@ class PemasukanController extends Controller
 
   public function update(Request $request, Pemasukan $pemasukan)
   {
-    $request->validate([
-      'nama' => 'required',
-      'harga' => 'required',
-    ]);
-    
+    $request->validate(['pemasukan' => 'required']);
     $pemasukan->update($request->all());
-
     return redirect('pemasukan')->with('success', 'Berhasil edit pemasukan.');
   }
 
