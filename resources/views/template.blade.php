@@ -60,6 +60,12 @@
               <p>Karyawan</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('barang') }}" class="nav-link {{$active === 'barang' ? 'active' : ''}}">
+              <i class="fas fa-th nav-icon"></i>
+              <p>Barang</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
