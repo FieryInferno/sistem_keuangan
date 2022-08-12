@@ -15,4 +15,5 @@ Route::middleware('auth')->group(function () {
   Route::resource('pemasukan', App\Http\Controllers\PemasukanController::class);
   Route::resource('pengeluaran', App\Http\Controllers\PengeluaranController::class);
   Route::resource('jasa', App\Http\Controllers\JasaController::class);
+  Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout']);
 });

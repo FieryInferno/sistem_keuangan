@@ -58,18 +58,26 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{url('karyawan')}}" class="nav-link {{$active === 'karyawan' ? 'active' : ''}}">
-              <i class="fas fa-user nav-icon"></i>
-              <p>Data Karyawan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('barang') }}" class="nav-link {{$active === 'barang' ? 'active' : ''}}">
-              <i class="fas fa-th nav-icon"></i>
-              <p>Data Barang</p>
-            </a>
-          </li>
+          @if (auth()->user()->role === 'admin')
+            <li class="nav-item">
+              <a href="{{url('karyawan')}}" class="nav-link {{$active === 'karyawan' ? 'active' : ''}}">
+                <i class="fas fa-user nav-icon"></i>
+                <p>Data Karyawan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url('barang') }}" class="nav-link {{$active === 'barang' ? 'active' : ''}}">
+                <i class="fas fa-th nav-icon"></i>
+                <p>Data Barang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url('jasa') }}" class="nav-link {{$active === 'jasa' ? 'active' : ''}}">
+                <i class="fas fa-hand-holding nav-icon"></i>
+                <p>Data Jasa</p>
+              </a>
+            </li>
+          @endif
           <li class="nav-item {{ in_array($active, ['pemasukan', 'pengeluaran']) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ in_array($active, ['pemasukan', 'pengeluaran']) ? 'active' : '' }}">
               <i class="nav-icon fas fa-money-bill"></i>
@@ -92,12 +100,6 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('jasa') }}" class="nav-link {{$active === 'jasa' ? 'active' : ''}}">
-              <i class="fas fa-hand-holding nav-icon"></i>
-              <p>Data Jasa</p>
-            </a>
           </li>
         </ul>
       </nav>
