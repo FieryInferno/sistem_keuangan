@@ -7,7 +7,7 @@
           'action' => isset($jasa) ? url('jasa/' . $jasa->id) : url('jasa'),
           'fields' => [
             'nama' => [
-              'label' => 'Nama Pelayanan',
+              'label' => 'Nama Jasa',
               'type' => 'input',
               'value' => isset($jasa) ? $jasa->nama : null,
             ],

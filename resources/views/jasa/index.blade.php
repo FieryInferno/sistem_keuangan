@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <?php
         $columns = [
-          'Nama Pelayanan' => 'nama',
+          'Nama Jasa' => 'nama',
           'Tipe Pelayanan' => 'tipe',
           'Harga' => 'harga',
           'Aksi' => ['render' => function ($data) { ?>

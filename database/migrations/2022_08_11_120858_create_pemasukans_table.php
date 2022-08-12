@@ -10,9 +10,15 @@ return new class extends Migration
   {
     Schema::create('pemasukans', function (Blueprint $table) {
       $table->id();
-      $table->string('nama');
-      $table->foreignId('jasa_id')->constrained('jasas')->onUpdate('cascade')->onDelete('cascade');
-      $table->integer('tip');
+      $table->string('no_pemasukan');
+      $table->date('tanggal');
+      $table->enum('jenis_pemasukan', ['barang', 'jasa']);
+      $table->foreignId('jasa_id')->constrained('jasas')->onUpdate('cascade')->onDelete('cascade')->nullable();
+      $table->foreignId('barang_id')->constrained('barangs')->onUpdate('cascade')->onDelete('cascade')->nullable();
+      $table->integer('harga');
+      $table->integer('qty');
+      $table->integer('diskon');
+      $table->string('keterangan');
       $table->timestamps();
     });
   }

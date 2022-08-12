@@ -11,6 +11,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
   Route::resource('karyawan', App\Http\Controllers\UserController::class);
   Route::resource('barang', App\Http\Controllers\BarangController::class);
+  Route::get('pemasukan/barangJasa', [App\Http\Controllers\PemasukanController::class, 'getBarangJasa']);
   Route::resource('pemasukan', App\Http\Controllers\PemasukanController::class);
   Route::resource('pengeluaran', App\Http\Controllers\PengeluaranController::class);
   Route::resource('jasa', App\Http\Controllers\JasaController::class);

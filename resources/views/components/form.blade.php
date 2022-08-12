@@ -64,10 +64,18 @@
               </div>
               @break
             @case('select')
-              <select name="{{ $key }}" class="form-control select2bs4">
-                @foreach ($value['data'] as $valueData)
-                  <option value="{{ $valueData->id }}" <?php $value['value'] === $valueData->id ? 'selected' : ''; ?>>{{ $valueData->nama }}</option>
-                @endforeach
+              <select
+                name="{{ $key }}"
+                class="form-control select2bs4"
+                onchange="{{ isset($value['onchange']) ? $value['onchange'] : '' }}"
+                id="{{ isset($value['id']) ? $value['id'] : '' }}"
+              >
+                @if (isset($value['data']))
+                  <option disabled></option>
+                  @foreach ($value['data'] as $valueData)
+                    <option value="{{ $valueData->id }}" <?= $value['value'] === $valueData->id ? 'selected' : ''; ?>>{{ $valueData->nama }}</option>
+                  @endforeach
+                @endif
               </select>
               @break
           @endswitch

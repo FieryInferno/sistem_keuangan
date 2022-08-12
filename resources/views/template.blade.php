@@ -181,7 +181,7 @@
 <script src="{{asset('plugins')}}/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="{{asset('plugins')}}/select2/js/select2.full.min.js"></script>
 <script>
-  function previewImg() {
+  const previewImg = () => {
     const gambar      = document.querySelector('#foto');
     const imgPreview  = document.querySelector('.img-preview');
     // label.textContent = gambar.files[0].name;
@@ -196,6 +196,23 @@
     $("#table").DataTable({"order": []});
     $('.select2bs4').select2({theme: 'bootstrap4'});
   });
+
+  const getBarangJasa = (data, id) => {
+    $.ajax({
+      url : '/pemasukan/barangJasa',
+      type : 'get',
+      data : {tipe : data.value}, 
+      success : function(result){
+        let option = '<option></option>';
+
+        result.forEach(element => {
+          option += `<option value="${element.id}">${element.nama}</option>`;
+        });
+
+        $(`#${id}`).html(option);
+      }
+    });
+  }
 </script>
 </body>
 </html>

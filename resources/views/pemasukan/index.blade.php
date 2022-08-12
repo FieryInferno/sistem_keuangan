@@ -4,14 +4,64 @@
     <div class="container-fluid">
       <?php
         $columns = [
-          'Nama Pemasukan' => 'nama',
-          'Nama Jasa' => ['render' => function ($data) {
-            return $data->jasa->nama;
+          'No Pemasukan' => 'no_pemasukan',
+          'Tanggal' => 'tanggal',
+          'Jenis Pemasukan' => 'jenis_pemasukan',
+          'Nama Barang/Jasa' => ['render' => function ($data) {
+            switch ($data->jenis_pemasukan) {
+              case 'barang':
+                return $data->barang->nama;
+                break;
+              case 'jasa':
+                return $data->jasa->nama;
+                break;
+              
+              default:
+                # code...
+                break;
+            }
           }],
           'Harga' => ['render' => function ($data) {
-            return $data->jasa->harga;
+            switch ($data->jenis_pemasukan) {
+              case 'barang':
+                return $data->barang->harga;
+                break;
+              case 'jasa':
+                return $data->jasa->harga;
+                break;
+              
+              default:
+                # code...
+                break;
+            }
           }],
-          'Tip' => 'tip',
+          'QTY' => 'qty',
+          'diskon' => 'diskon',
+          'Total Harga' => ['render' => function ($data) {
+            $harga = 0;
+
+            switch ($data->jenis_pemasukan) {
+              case 'barang':
+                $harga = $data->barang->harga;
+                break;
+              case 'jasa':
+                $harga = $data->jasa->harga;
+                break;
+              
+              default:
+                # code...
+                break;
+            }
+
+            $totalHarga = $harga * $data->qty;
+
+            if ($data->diskon) {
+              return $totalHarga - ($totalHarga * $data->diskon / 100);
+            }
+
+            return $totalHarga;
+          }],
+          'keterangan' => 'keterangan',
           'Aksi' => ['render' => function ($data) { ?>
             <a href="{{url('pemasukan/' . $data->id . '/edit')}}" class="btn btn-success">Edit</a>
             <button

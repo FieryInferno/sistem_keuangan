@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Pemasukan extends Model
 {
   use HasFactory;
-  protected $fillable = ['nama', 'jasa_id', 'tip'];
 
   public function jasa()
   {
     return $this->hasOne(Jasa::class, 'id', 'jasa_id');
+  }
+
+  public function barang()
+  {
+    return $this->hasOne(Barang::class, 'id', 'barang_id');
   }
 }
