@@ -9,7 +9,7 @@ class PemasukanController extends Controller
 {
   public function index()
   {
-    return view('pemasukan', [
+    return view('pemasukan.index', [
       'title' => 'Pemasukan',
       'active' => 'pemasukan',
       'data' => Pemasukan::all(),
@@ -18,7 +18,7 @@ class PemasukanController extends Controller
 
   public function create()
   {
-    return view('form_pemasukan', [
+    return view('pemasukan.form', [
       'title' => 'Pemasukan',
       'active' => 'pemasukan',
     ]);
@@ -33,7 +33,7 @@ class PemasukanController extends Controller
 
   public function edit(Pemasukan $pemasukan)
   {
-    return view('form_pemasukan', [
+    return view('pemasukan.form', [
       'title' => 'Pemasukan',
       'active' => 'pemasukan',
       'pemasukan' => $pemasukan,

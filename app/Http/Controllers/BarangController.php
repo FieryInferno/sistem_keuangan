@@ -9,7 +9,7 @@ class BarangController extends Controller
 {
   public function index()
   {
-    return view('barang', [
+    return view('barang.index', [
       'title' => 'Barang',
       'active' => 'barang',
       'data' => Barang::all(),
@@ -18,7 +18,7 @@ class BarangController extends Controller
 
   public function create()
   {
-    return view('form_barang', [
+    return view('barang.form', [
       'title' => 'Barang',
       'active' => 'barang',
     ]);
@@ -28,17 +28,16 @@ class BarangController extends Controller
   {
     $request->validate([
       'nama' => 'required',
+      'tipe' => 'required',
       'harga' => 'required',
     ]);
-
     Barang::create($request->all());
-
     return redirect('barang')->with('success', 'Berhasil tambah barang.');
   }
 
   public function edit(Barang $barang)
   {
-    return view('form_barang', [
+    return view('barang.form', [
       'title' => 'Barang',
       'active' => 'barang',
       'barang' => $barang,
@@ -51,9 +50,7 @@ class BarangController extends Controller
       'nama' => 'required',
       'harga' => 'required',
     ]);
-    
     $barang->update($request->all());
-
     return redirect('barang')->with('success', 'Berhasil edit barang.');
   }
 

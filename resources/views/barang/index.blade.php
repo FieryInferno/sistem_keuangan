@@ -4,7 +4,8 @@
     <div class="container-fluid">
       <?php
         $columns = [
-          'Nama Barang' => 'nama',
+          'Nama Pelayanan' => 'nama',
+          'Tipe Pelayanan' => 'tipe',
           'Harga' => 'harga',
           'Aksi' => ['render' => function ($data) { ?>
             <a href="{{url('barang/' . $data->id . '/edit')}}" class="btn btn-success">Edit</a>

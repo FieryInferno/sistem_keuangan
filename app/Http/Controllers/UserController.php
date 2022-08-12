@@ -10,7 +10,7 @@ class UserController extends Controller
 {
   public function index()
   {
-    return view('karyawan', [
+    return view('karyawan.index', [
       'title' => 'Karyawan',
       'active' => 'karyawan',
       'data' => User::where('role', '=', 'karyawan')->get(),
@@ -19,7 +19,7 @@ class UserController extends Controller
 
   public function create()
   {
-    return view('form_karyawan', [
+    return view('karyawan.index', [
       'title' => 'Karyawan',
       'active' => 'karyawan',
     ]);
@@ -40,7 +40,6 @@ class UserController extends Controller
     $user->role = 'karyawan';
 
     $user->save();
-
     return redirect('karyawan')->with('success', 'Berhasil tambah karyawan.');
   }
 
@@ -48,7 +47,7 @@ class UserController extends Controller
   {
     $user = User::find($id);
 
-    return view('form_karyawan', [
+    return view('karyawan.index', [
       'title' => 'Karyawan',
       'active' => 'karyawan',
       'user' => $user,
@@ -63,7 +62,6 @@ class UserController extends Controller
     ]);
 
     $user = User::find($id);
-
     $user->nama = $request->nama;
     $user->username = $request->username;
 
@@ -81,11 +79,6 @@ class UserController extends Controller
   public function destroy($id)
   {
     $user = User::find($id);
-
-    // dd($user);
-
-    $user->delete();
-    
     return redirect('karyawan')->with('success', 'Berhasil hapus karyawan.');
   }
 }

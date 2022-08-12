@@ -12,4 +12,5 @@ Route::middleware('auth')->group(function () {
   Route::resource('karyawan', App\Http\Controllers\UserController::class);
   Route::resource('barang', App\Http\Controllers\BarangController::class);
   Route::resource('pemasukan', App\Http\Controllers\PemasukanController::class);
+  Route::resource('pengeluaran', App\Http\Controllers\PengeluaranController::class);
 });
