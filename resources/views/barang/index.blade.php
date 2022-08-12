@@ -4,9 +4,12 @@
     <div class="container-fluid">
       <?php
         $columns = [
-          'Nama Pelayanan' => 'nama',
-          'Tipe Pelayanan' => 'tipe',
+          'Nama Barang' => 'nama',
+          'QTY' => 'qty',
           'Harga' => 'harga',
+          'Total Harga' => ['render' => function ($data) {
+            return $data->harga * $data->qty;
+          }],
           'Aksi' => ['render' => function ($data) { ?>
             <a href="{{url('barang/' . $data->id . '/edit')}}" class="btn btn-success">Edit</a>
             <button

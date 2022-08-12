@@ -63,6 +63,13 @@
                 <img class="img-preview" width="100%" src="{{asset('images/' . $value['value'])}}")>
               </div>
               @break
+            @case('select')
+              <select name="{{ $key }}" class="form-control select2bs4">
+                @foreach ($value['data'] as $valueData)
+                  <option value="{{ $valueData->id }}" <?php $value['value'] === $valueData->id ? 'selected' : ''; ?>>{{ $valueData->nama }}</option>
+                @endforeach
+              </select>
+              @break
           @endswitch
         </div>
       @endforeach

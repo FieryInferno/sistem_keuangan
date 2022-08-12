@@ -7,14 +7,14 @@
           'action' => isset($barang) ? url('barang/' . $barang->id) : url('barang'),
           'fields' => [
             'nama' => [
-              'label' => 'Nama Pelayanan',
+              'label' => 'Nama Barang',
               'type' => 'input',
               'value' => isset($barang) ? $barang->nama : null,
             ],
-            'tipe' => [
-              'label' => 'Tipe Pelayanan',
+            'qty' => [
+              'label' => 'QTY',
               'type' => 'input',
-              'value' => isset($barang) ? $barang->tipe : null,
+              'value' => isset($barang) ? $barang->qty : null,
             ],
             'harga' => [
               'label' => 'Harga',
