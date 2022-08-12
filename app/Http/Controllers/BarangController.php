@@ -48,6 +48,7 @@ class BarangController extends Controller
   {
     $request->validate([
       'nama' => 'required',
+      'tipe' => 'required',
       'harga' => 'required',
     ]);
     $barang->update($request->all());
