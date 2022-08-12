@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2022 at 09:02 AM
+-- Generation Time: Aug 12, 2022 at 02:36 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -41,7 +41,7 @@ CREATE TABLE `barangs` (
 --
 
 INSERT INTO `barangs` (`id`, `nama`, `qty`, `harga`, `created_at`, `updated_at`) VALUES
-(3, 'Barang 1', 20, 20000, '2022-08-12 00:01:37', '2022-08-12 00:02:19');
+(3, 'Barang 1', 85, 20000, '2022-08-12 00:01:37', '2022-08-12 04:53:21');
 
 -- --------------------------------------------------------
 
@@ -104,9 +104,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2022_08_11_105343_create_barangs_table', 2),
-(7, '2022_08_11_122045_create_pengeluarans_table', 4),
 (9, '2022_08_11_120857_create_jasas_table', 5),
-(10, '2022_08_11_120858_create_pemasukans_table', 5);
+(12, '2022_08_11_120858_create_pemasukans_table', 6),
+(13, '2022_08_11_122045_create_pengeluarans_table', 7);
 
 -- --------------------------------------------------------
 
@@ -128,9 +128,15 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `pemasukans` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jasa_id` bigint(20) UNSIGNED NOT NULL,
-  `tip` int(11) NOT NULL,
+  `no_pemasukan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal` date NOT NULL,
+  `jenis_pemasukan` enum('barang','jasa') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jasa_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `barang_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `harga` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `diskon` int(11) NOT NULL,
+  `keterangan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -139,8 +145,9 @@ CREATE TABLE `pemasukans` (
 -- Dumping data for table `pemasukans`
 --
 
-INSERT INTO `pemasukans` (`id`, `nama`, `jasa_id`, `tip`, `created_at`, `updated_at`) VALUES
-(1, 'Nama Pemasukan', 2, 5000, '2022-08-11 20:44:54', '2022-08-11 20:51:58');
+INSERT INTO `pemasukans` (`id`, `no_pemasukan`, `tanggal`, `jenis_pemasukan`, `jasa_id`, `barang_id`, `harga`, `qty`, `diskon`, `keterangan`, `created_at`, `updated_at`) VALUES
+(2, '123', '2022-08-02', 'jasa', 2, NULL, 10000, 1, 1, 'keterangan', '2022-08-12 01:27:29', '2022-08-12 04:28:33'),
+(3, '123', '2022-08-12', 'barang', NULL, 3, 10000, 15, 0, 'keterangan', '2022-08-12 04:46:56', '2022-08-12 04:53:21');
 
 -- --------------------------------------------------------
 
@@ -150,9 +157,22 @@ INSERT INTO `pemasukans` (`id`, `nama`, `jasa_id`, `tip`, `created_at`, `updated
 
 CREATE TABLE `pengeluarans` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `no_pengeluaran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal` date NOT NULL,
+  `nama_kas_keluar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `harga` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `keterangan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pengeluarans`
+--
+
+INSERT INTO `pengeluarans` (`id`, `no_pengeluaran`, `tanggal`, `nama_kas_keluar`, `harga`, `qty`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, '123', '2022-08-12', 'Nama kas keluar', 10000, 1, 'keterangan', '2022-08-12 05:11:06', '2022-08-12 05:12:08');
 
 -- --------------------------------------------------------
 
@@ -237,7 +257,8 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `pemasukans`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pemasukans_jasa_id_foreign` (`jasa_id`);
+  ADD KEY `pemasukans_jasa_id_foreign` (`jasa_id`),
+  ADD KEY `pemasukans_barang_id_foreign` (`barang_id`);
 
 --
 -- Indexes for table `pengeluarans`
@@ -286,19 +307,19 @@ ALTER TABLE `jasas`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pemasukans`
 --
 ALTER TABLE `pemasukans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengeluarans`
 --
 ALTER TABLE `pengeluarans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -320,6 +341,7 @@ ALTER TABLE `users`
 -- Constraints for table `pemasukans`
 --
 ALTER TABLE `pemasukans`
+  ADD CONSTRAINT `pemasukans_barang_id_foreign` FOREIGN KEY (`barang_id`) REFERENCES `barangs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pemasukans_jasa_id_foreign` FOREIGN KEY (`jasa_id`) REFERENCES `jasas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
