@@ -4,9 +4,17 @@
     <div class="container-fluid">
       <?php
         $columns = [
-          'Pmeasukan' => 'pemasukan',
+          'No. Pengeluaran' => 'no_pengeluaran',
+          'Tanggal' => 'tanggal',
+          'Nama Kas Keluar' => 'nama_kas_keluar',
+          'Harga' => 'harga',
+          'QTY' => 'qty',
+          'Total' => ['render' => function ($data) {
+            return $data->harga * $data->qty;
+          }],
+          'Keterangan' => 'keterangan',
           'Aksi' => ['render' => function ($data) { ?>
-            <a href="{{url('pemasukan/' . $data->id . '/edit')}}" class="btn btn-success">Edit</a>
+            <a href="{{url('pengeluaran/' . $data->id . '/edit')}}" class="btn btn-success">Edit</a>
             <button
               type="button"
               class="btn btn-danger"
@@ -29,7 +37,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #58dfa0;">Close</button>
-                    <form action="{{url('pemasukan/' . $data->id)}}" method="post">
+                    <form action="{{url('pengeluaran/' . $data->id)}}" method="post">
                       @csrf
                       {{method_field('DELETE')}}
                       <button type="submit" class="btn btn-danger">Hapus</button>
@@ -41,7 +49,7 @@
           <?php }]
         ];
       ?>
-      <x-table :columns=$columns :dataList=$data url="{{ url('pemasukan/create' )}}"/>
+      <x-table :columns=$columns :dataList=$data url="{{ url('pengeluaran/create' )}}"/>
     </div><!-- /.container-fluid -->
   </div>
 @endsection

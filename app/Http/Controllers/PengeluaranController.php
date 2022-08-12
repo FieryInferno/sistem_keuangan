@@ -26,7 +26,14 @@ class PengeluaranController extends Controller
 
   public function store(Request $request)
   {
-    $request->validate(['pengeluaran' => 'required']);
+    $request->validate([
+      'no_pengeluaran' => 'required',
+      'tanggal' => 'required',
+      'nama_kas_keluar' => 'required',
+      'harga' => 'required',
+      'qty' => 'required',
+      'keterangan' => 'required',
+    ]);
     Pengeluaran::create($request->all());
     return redirect('pengeluaran')->with('success', 'Berhasil tambah pengeluaran.');
   }
@@ -42,7 +49,14 @@ class PengeluaranController extends Controller
 
   public function update(Request $request, Pengeluaran $pengeluaran)
   {
-    $request->validate(['pengeluaran' => 'required']);
+    $request->validate([
+      'no_pengeluaran' => 'required',
+      'tanggal' => 'required',
+      'nama_kas_keluar' => 'required',
+      'harga' => 'required',
+      'qty' => 'required',
+      'keterangan' => 'required',
+    ]);
     $pengeluaran->update($request->all());
     return redirect('pengeluaran')->with('success', 'Berhasil edit pengeluaran.');
   }

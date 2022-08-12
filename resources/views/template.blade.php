@@ -86,7 +86,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('pengeluaran') }}" class="nav-link {{ $active === 'barang' ? 'pengeluaran' : '' }}">
+                <a href="{{ url('pengeluaran') }}" class="nav-link {{ $active === 'pengeluaran' ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Pengeluaran</p>
                 </a>
