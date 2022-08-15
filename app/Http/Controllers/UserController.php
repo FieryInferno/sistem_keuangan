@@ -19,7 +19,7 @@ class UserController extends Controller
 
   public function create()
   {
-    return view('karyawan.index', [
+    return view('karyawan.form', [
       'title' => 'Karyawan',
       'active' => 'karyawan',
     ]);

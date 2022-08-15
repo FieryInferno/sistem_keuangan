@@ -6,7 +6,7 @@
   </div>
   <div class="card-body">
     <x-alert-success/>
-    <table class="table" id="table">
+    <table class="table" id="table" width="100%">
       <thead>
         <tr>
           @foreach ($columns as $key => $value)

@@ -101,6 +101,14 @@
               </li>
             </ul>
           </li>
+          @if (auth()->user()->role === 'admin')
+            <li class="nav-item">
+              <a href="{{url('jurnal')}}" class="nav-link {{$active === 'jurnal' ? 'active' : ''}}">
+                <i class="fas fa-book nav-icon"></i>
+                <p>Data Jurnal</p>
+              </a>
+            </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -195,7 +203,10 @@
   }
 
   $(function () {
-    $("#table").DataTable({"order": []});
+    $("#table").DataTable({
+      "order": [],
+      "responsive": true,
+    });
     $('.select2bs4').select2({theme: 'bootstrap4'});
   });
 

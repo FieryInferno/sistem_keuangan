@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2022 at 02:36 PM
+-- Generation Time: Aug 15, 2022 at 05:25 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -146,7 +146,7 @@ CREATE TABLE `pemasukans` (
 --
 
 INSERT INTO `pemasukans` (`id`, `no_pemasukan`, `tanggal`, `jenis_pemasukan`, `jasa_id`, `barang_id`, `harga`, `qty`, `diskon`, `keterangan`, `created_at`, `updated_at`) VALUES
-(2, '123', '2022-08-02', 'jasa', 2, NULL, 10000, 1, 1, 'keterangan', '2022-08-12 01:27:29', '2022-08-12 04:28:33'),
+(2, '123', '2022-08-02', 'jasa', 2, NULL, 10000, 5, 1, 'keterangan', '2022-08-12 01:27:29', '2022-08-15 02:12:26'),
 (3, '123', '2022-08-12', 'barang', NULL, 3, 10000, 15, 0, 'keterangan', '2022-08-12 04:46:56', '2022-08-12 04:53:21');
 
 -- --------------------------------------------------------
@@ -172,7 +172,7 @@ CREATE TABLE `pengeluarans` (
 --
 
 INSERT INTO `pengeluarans` (`id`, `no_pengeluaran`, `tanggal`, `nama_kas_keluar`, `harga`, `qty`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, '123', '2022-08-12', 'Nama kas keluar', 10000, 1, 'keterangan', '2022-08-12 05:11:06', '2022-08-12 05:12:08');
+(1, '123', '2022-08-12', 'Nama kas keluar', 10000, 1, 'keterangan', '2022-08-12 03:11:06', '2022-08-12 03:12:08');
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', '$2y$10$wnaK.IOjAvOrx8g4rPAXiO7c.naFrx.HxWSVNyrgLAVWqI/8jqI.e', 'admin', NULL, NULL),
-(10, 'karyawan', 'karyawan', '$2y$10$mMHwchkIBLUjKx5GW1Jm0eetlJboeCM/ZwIzM5o.EI0vvcT0Z1R.a', 'karyawan', '2022-08-11 03:47:01', '2022-08-11 03:47:01');
+(10, 'karyawan', 'karyawan', '$2y$10$mMHwchkIBLUjKx5GW1Jm0eetlJboeCM/ZwIzM5o.EI0vvcT0Z1R.a', 'karyawan', '2022-08-11 03:47:01', '2022-08-11 03:47:01'),
+(11, 'bagas', 'bagas', '$2y$10$nf6zd7UL7BQ73u6DwGp7u.tkNHan/MQv2U8y9x7uXO.aMhyj8WrUS', 'karyawan', '2022-08-15 02:22:56', '2022-08-15 02:22:56');
 
 --
 -- Indexes for dumped tables
@@ -331,7 +332,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
