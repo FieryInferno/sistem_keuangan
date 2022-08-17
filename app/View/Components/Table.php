@@ -9,12 +9,14 @@ class Table extends Component
   public $columns;
   public $dataList;
   public $url;
+  public $idTable;
 
-  public function __construct($columns, $dataList, $url)
+  public function __construct($columns, $dataList, $url, $idTable = 'table')
   {
     $this->columns = $columns;
     $this->dataList = $dataList;
     $this->url = $url;
+    $this->idTable = $idTable;
   }
 
     /**

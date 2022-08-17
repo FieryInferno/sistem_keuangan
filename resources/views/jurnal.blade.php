@@ -89,7 +89,7 @@
           <?php }]
         ];
       ?>
-      <x-table :columns=$columns :dataList=$data url="{{ url('barang/create' )}}"/>
+      <x-table :columns=$columns :dataList=$data url="{{ url('barang/create' )}}" idTable="tableJurnal" />
     </div><!-- /.container-fluid -->
   </div>
 @endsection
