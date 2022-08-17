@@ -17,7 +17,8 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="{{ url('') }}"><b>Sistem </b>Keuangan</a>
+      <!-- <a href="{{ url('') }}"><b>Sistem </b>Keuangan</a> -->
+      <img src="{{ asset('images/logo.jpeg') }}" style="width: 50%">
     </div>
     <!-- /.login-logo -->
     <div class="card">

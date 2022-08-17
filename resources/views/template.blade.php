@@ -44,8 +44,10 @@
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link"></a>
+    <a href="index3.html" class="brand-link text-center">
+      <img src="{{ asset('images/logo.jpeg') }}" class="brand-image img-circle elevation-3" style="opacity: .8;width: 50%;height: 100%;float: none;max-height: none;margin-left: 0px;">
+      <span class="brand-text font-weight-light">&nbsp;</span>
+    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
