@@ -192,6 +192,7 @@
 <script src="{{asset('plugins')}}/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{asset('plugins')}}/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="{{asset('plugins')}}/select2/js/select2.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const previewImg = () => {
     const gambar      = document.querySelector('#foto');
@@ -255,6 +256,47 @@
       }
     });
   }
+
+  <?php
+    if (isset($data['pemasukan']) && isset($data['pengeluaran'])) { ?>
+      const pemasukan = [];
+      const pengeluaran = [];
+    
+      <?php
+        for ($i = 0; $i < 6; $i++) { ?>
+          pemasukan.push('<?= $data['pemasukan'][$i]; ?>');
+          pengeluaran.push('<?= $data['pengeluaran'][$i] ?>');
+        <?php }
+      ?>
+    
+      const data = {
+        labels: ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+        datasets: [
+          {
+            label: 'Pemasukan',
+            backgroundColor: '#28a745',
+            borderColor: '#28a745',
+            data: pemasukan,
+          },
+          {
+            label: 'Pengeluaran',
+            backgroundColor: '#007bff',
+            borderColor: '#007bff',
+            data: pengeluaran,
+          },
+        ]
+      };
+    
+      const config = {
+        type: 'line',
+        data: data,
+        options: {}
+      };
+    
+      const myChart = new Chart(document.getElementById('chartKeuangan'), config);
+    <?php }
+  ?>
+
 </script>
 </body>
 </html>
