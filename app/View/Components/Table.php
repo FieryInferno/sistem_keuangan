@@ -10,13 +10,15 @@ class Table extends Component
   public $dataList;
   public $url;
   public $idTable;
+  public $excel;
 
-  public function __construct($columns, $dataList, $url, $idTable = 'table')
+  public function __construct($columns, $dataList, $url = null, $idTable = 'table', $excel = null)
   {
     $this->columns = $columns;
     $this->dataList = $dataList;
     $this->url = $url;
     $this->idTable = $idTable;
+    $this->excel = $excel;
   }
 
     /**

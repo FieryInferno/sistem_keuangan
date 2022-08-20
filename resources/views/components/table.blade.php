@@ -1,11 +1,16 @@
 <div class="card">
-  @if ($idTable !== 'tableJurnal')
-    <div class="card-header">
+  <div class="card-header">
+    @if ($idTable !== 'tableJurnal')
       <div class="row mb-1 d-flex justify-content-end">
         <a href="{{ $url }}" class="btn btn-primary">Tambah</a>
       </div>
-    </div>
-  @endif
+    @endif
+    @if ($excel)
+      <div class="row mb-1 d-flex justify-content-end">
+        <a href="{{ $excel }}" class="btn btn-primary">Excel</a>
+      </div>
+    @endif
+  </div>
   <div class="card-body">
     <x-alert-success/>
     <table class="table" id="{{ $idTable }}" width="100%">
