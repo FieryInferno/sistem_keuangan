@@ -8,8 +8,22 @@
           'fields' => [
             'nama' => [
               'label' => 'Nama Barang',
-              'type' => 'input',
+              'type' => 'select',
               'value' => isset($barang) ? $barang->nama : null,
+              'data' => [
+                (object) [
+                  'id' => 'Parfum Fabolous Sunday',
+                  'nama' => 'Parfum Fabolous Sunday',
+                ],
+                (object) [
+                  'id' => 'Parfum Forget THR Sunday',
+                  'nama' => 'Parfum Forget THR Sunday',
+                ],
+                (object) [
+                  'id' => 'Parfum Glorious Fruity',
+                  'nama' => 'Parfum Glorious Fruity',
+                ],
+              ],
             ],
             'qty' => [
               'label' => 'QTY',

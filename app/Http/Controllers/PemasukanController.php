@@ -34,9 +34,7 @@ class PemasukanController extends Controller
       'tanggal' => 'required',
       'jenis_pemasukan' => 'required',
       'barang_jasa_id' => 'required',
-      'harga' => 'required',
       'qty' => 'required',
-      'diskon' => 'required',
       'keterangan' => 'required',
     ]);
 
@@ -52,6 +50,8 @@ class PemasukanController extends Controller
         break;
       case 'jasa':
         $pemasukan->jasa_id = $request->barang_jasa_id;
+        $pemasukan->tipe_id = $request->tipe;
+        $pemasukan->is_express = $request->is_express;
         break;
       
       default:
@@ -59,7 +59,6 @@ class PemasukanController extends Controller
         break;
     }
 
-    $pemasukan->harga = $request->harga;
     $pemasukan->qty = $request->qty;
     $pemasukan->diskon = $request->diskon;
     $pemasukan->keterangan = $request->keterangan;
@@ -160,5 +159,10 @@ class PemasukanController extends Controller
     }
 
     return response()->json($data);
+  }
+
+  public function getTipePelayanan($id)
+  {
+    return response()->json(Jasa::find($id)->tipe);
   }
 }

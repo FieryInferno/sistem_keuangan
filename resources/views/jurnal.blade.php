@@ -31,7 +31,7 @@
                   $harga = $data->barang->harga;
                   break;
                 case 'jasa':
-                  $harga = $data->jasa->harga;
+                  $harga = $data->is_express === 'true' ? $data->tipe->harga + 10000 : $data->tipe->harga;
                   break;
                 
                 default:

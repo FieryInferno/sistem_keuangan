@@ -14,8 +14,9 @@ return new class extends Migration
       $table->date('tanggal');
       $table->enum('jenis_pemasukan', ['barang', 'jasa']);
       $table->foreignId('jasa_id')->constrained('jasas')->onUpdate('cascade')->onDelete('cascade')->nullable();
+      $table->foreignId('tipe_id')->constrained('tipe_pelayanans')->onUpdate('cascade')->onDelete('cascade')->nullable();
+      $table->enum('is_express', [true, false]);
       $table->foreignId('barang_id')->constrained('barangs')->onUpdate('cascade')->onDelete('cascade')->nullable();
-      $table->integer('harga');
       $table->integer('qty');
       $table->integer('diskon');
       $table->string('keterangan');

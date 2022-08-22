@@ -14,8 +14,8 @@ class JurnalController extends Controller
   {
     $pemasukan = Pemasukan::all();
     $pengeluaran = Pengeluaran::all();
-    $data = $pemasukan->merge($pengeluaran)->sortBy('tanggal');
-    
+    $data = $pemasukan->concat($pengeluaran)->sortBy('tanggal');
+
     return view('jurnal', [
       'title' => 'Jurnal',
       'active' => 'jurnal',
@@ -27,9 +27,8 @@ class JurnalController extends Controller
   {
     $pemasukan = Pemasukan::all();
     $pengeluaran = Pengeluaran::all();
-    $data = $pemasukan->merge($pengeluaran)->sortBy('tanggal');
+    $data = $pemasukan->concat($pengeluaran)->sortBy('tanggal');
 
     return Excel::download(new JurnalExport($data), 'jurnal.xlsx');
-    // return view('jurnalExcel', ['data' => $data]);
   }
 }

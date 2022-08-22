@@ -27,12 +27,19 @@
                 return $data->barang->harga;
                 break;
               case 'jasa':
-                return $data->jasa->harga;
+                return $data->tipe->harga;
                 break;
               
               default:
                 # code...
                 break;
+            }
+          }],
+          'Express' => ['render' => function ($data) {
+            if ($data->jenis_pemasukan === 'jasa') {
+              return $data->is_express === 'true' ? 'Ya' : 'Tidak';
+            } else {
+              return '';
             }
           }],
           'QTY' => 'qty',
@@ -45,7 +52,7 @@
                 $harga = $data->barang->harga;
                 break;
               case 'jasa':
-                $harga = $data->jasa->harga;
+                $harga = $data->is_express === 'true' ? $data->tipe->harga + 10000 : $data->tipe->harga;
                 break;
               
               default:

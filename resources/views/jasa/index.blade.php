@@ -5,8 +5,11 @@
       <?php
         $columns = [
           'Nama Jasa' => 'nama',
-          'Tipe Pelayanan' => 'tipe',
-          'Harga' => 'harga',
+          'Tipe Pelayanan' => ['render' => function ($data) {
+            foreach ($data->tipe as $key) { ?>
+              {{ $key->tipe }} : {{ $key->harga }}<br/>
+            <?php }
+          }],
           'Aksi' => ['render' => function ($data) { ?>
             <a href="{{url('jasa/' . $data->id . '/edit')}}" class="btn btn-success">Edit</a>
             <button

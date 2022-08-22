@@ -18,4 +18,9 @@ class Pemasukan extends Model
   {
     return $this->hasOne(Barang::class, 'id', 'barang_id');
   }
+
+  public function tipe()
+  {
+    return $this->hasOne(TipePelayanan::class, 'id', 'tipe_id');
+  }
 }

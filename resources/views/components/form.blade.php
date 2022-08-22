@@ -14,7 +14,9 @@
       @endif
       @foreach ($form['fields'] as $key => $value)
         <div class="form-group">
-          <label>{{$value['label']}}</label>
+          @if ($value['label'])
+            <label>{{$value['label']}}</label>
+          @endif
           @switch ($value['type'])
             @case('input')
               <input
@@ -71,7 +73,7 @@
                 id="{{ isset($value['id']) ? $value['id'] : '' }}"
               >
                 @if (isset($value['data']))
-                  <option disabled></option>
+                  <option disabled selected></option>
                   @foreach ($value['data'] as $valueData)
                     <option value="{{ $valueData->id }}" <?= $value['value'] === $valueData->id ? 'selected' : ''; ?>>{{ isset($value['labelSelect']) ? $value['labelSelect']($valueData) : $valueData->nama }}</option>
                   @endforeach
@@ -81,6 +83,33 @@
           @endswitch
         </div>
       @endforeach
+      @if (str_contains($form['action'], 'jasa'))
+        <div class="form-group" id="fieldTipe">
+          <div class="row">
+            <div class="col-5">
+              <label>Tipe Pelayanan</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ketik disini..."
+                name="tipe[]"
+              >
+            </div>
+            <div class="col-5">
+              <label>Harga</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ketik disini..."
+                name="harga[]"
+              >
+            </div>
+            <div class="col-2" style="padding-top: 2rem;">
+              <button class="btn btn-primary" onClick="tambahField(0)" type="button"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      @endif
     </div>
     <div class="card-footer">
       <button type="submit" class="btn btn-primary">Simpan</button>

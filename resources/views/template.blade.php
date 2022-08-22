@@ -70,7 +70,7 @@
             <li class="nav-item">
               <a href="{{ url('barang') }}" class="nav-link {{$active === 'barang' ? 'active' : ''}}">
                 <i class="fas fa-th nav-icon"></i>
-                <p>Data Barang</p>
+                <p>Ketersediaan Barang</p>
               </a>
             </li>
             <li class="nav-item">
@@ -249,10 +249,56 @@
         let option = '<option></option>';
 
         result.forEach(element => {
-          option += `<option value="${element.id}">${element.nama} - ${element.harga}</option>`;
+          option += `<option value="${element.id}">${element.nama}${data.value === 'barang' ? ' - ' + element.harga : ''}</option>`;
         });
 
         $(`#${id}`).html(option);
+        $(`#${id}`).attr('onchange', 'getTipe(this)');
+        $('#tipePelayanan').empty();
+      }
+    });
+  }
+
+  const getTipe = (data) => {
+    $.ajax({
+      url : `/pemasukan/getTipePelayanan/${data.value}`,
+      type : 'get', 
+      success : function(result){
+        let tipePelayanan = `
+          <div class="form-group">
+            <label>Tipe Pelayanan</label>
+            <select
+              name="tipe"
+              class="form-control select2bs4"
+            >
+              <option selected disabled></option>
+        `;
+
+        result.forEach((tipe) => {
+          tipePelayanan += `<option value="${tipe.id}">${tipe.tipe}</option>`;
+        });
+
+        tipePelayanan += `
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Express</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="is_express" value="true">
+              <label class="form-check-label" for="exampleRadios1">
+                Ya
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="is_express" value="false">
+              <label class="form-check-label" for="exampleRadios2">
+                Tidak
+              </label>
+            </div>
+          </div>
+        `;
+
+        $('#tipePelayanan').html(tipePelayanan);
       }
     });
   }
@@ -296,6 +342,37 @@
       const myChart = new Chart(document.getElementById('chartKeuangan'), config);
     <?php }
   ?>
+
+  const tambahField = (urutan) => {
+    $("#fieldTipe").append(
+      `<div class="row" id="field${urutan + 1}">
+        <div class="col-5">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ketik disini..."
+            name="tipe[]"
+          >
+        </div>
+        <div class="col-5">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ketik disini..."
+            name="harga[]"
+          >
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary" onclick="tambahField(${urutan + 1})" type="button"><i class="fas fa-plus"></i></button>
+          <button class="btn btn-danger" onclick="hapusField(${urutan + 1})" type="button"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>`
+    );
+  };
+
+  const hapusField = (urutan) => {
+    $(`#field${urutan}`).remove();
+  }
 
 </script>
 </body>

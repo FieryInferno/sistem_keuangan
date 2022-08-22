@@ -22,6 +22,41 @@ class DashboardController extends Controller
       $bulan++;
     }
 
+    $pemasukan = Pemasukan::all();
+    $pengeluaran = Pengeluaran::all();
+    $dataJurnal = $pemasukan->concat($pengeluaran)->sortBy('tanggal');
+    $debit = 0;
+    $kredit = 0;
+
+    foreach ($dataJurnal as $key) {
+      if ($key->jenis_pemasukan) {
+        $harga = 0;
+
+        switch ($key->jenis_pemasukan) {
+          case 'barang':
+            $harga = $key->barang->harga;
+            break;
+          case 'jasa':
+            $harga = $key->jasa->harga;
+            break;
+          
+          default:
+            # code...
+            break;
+        }
+
+        $totalHarga = $harga * $key->qty;
+
+        if ($key->diskon) {
+          $debit += $totalHarga - ($totalHarga * $key->diskon / 100);
+        }
+
+        $debit += $totalHarga;
+      } else {
+        $kredit += $key->harga * $key->qty;
+      }
+    }
+
     return view('dashboard', [
       'title' => 'Dashboard',
       'active' => 'dashboard',
@@ -29,6 +64,7 @@ class DashboardController extends Controller
       'barang' => Barang::count(),
       'jasa' => Jasa::count(),
       'data' => $data,
+      'keutungan' => $debit - $kredit,
     ]);
   }
 }

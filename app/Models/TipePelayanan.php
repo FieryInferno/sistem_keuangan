@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jasa extends Model
+class TipePelayanan extends Model
 {
   use HasFactory;
-  protected $fillable = ['nama'];
+  protected $fillable = ['tipe', 'harga', 'jasa_id'];
 
   public function tipe()
   {
-    return $this->hasMany(TipePelayanan::class);
+    return $this->belongsTo(Jasa::class, 'id', 'jasa_id');
   }
 }

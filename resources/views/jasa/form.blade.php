@@ -11,16 +11,6 @@
               'type' => 'input',
               'value' => isset($jasa) ? $jasa->nama : null,
             ],
-            'tipe' => [
-              'label' => 'Tipe Pelayanan',
-              'type' => 'input',
-              'value' => isset($jasa) ? $jasa->tipe : null,
-            ],
-            'harga' => [
-              'label' => 'Harga',
-              'type' => 'input',
-              'value' => isset($jasa) ? $jasa->harga : null,
-            ],
           ],
           'mode' => isset($jasa) ? 'edit' : null,
         ];

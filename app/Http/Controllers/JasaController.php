@@ -31,7 +31,20 @@ class JasaController extends Controller
       'tipe' => 'required',
       'harga' => 'required',
     ]);
-    Jasa::create($request->all());
+
+    $jasa = new Jasa;
+    $jasa->nama = $request->nama;
+
+    $jasa->save();
+
+    $tipe = [];
+    
+    for ($i=0; $i < count($request->tipe); $i++) {
+      $tipe[$i]['tipe'] = $request->tipe[$i];
+      $tipe[$i]['harga'] = $request->harga[$i];
+      $tipe[$i]['jasa_id'] = $jasa->id;
+    }
+    $jasa->tipe()->createMany($tipe);
     return redirect('jasa')->with('success', 'Berhasil tambah jasa.');
   }
 
