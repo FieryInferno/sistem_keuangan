@@ -42,11 +42,9 @@
                 null,
               'id' => 'barang_jasa_id',
               'data' => isset($pemasukan) ? $barang_jasa : null,
-            ],
-            'harga' => [
-              'label' => 'Harga',
-              'type' => 'input',
-              'value' => isset($pemasukan) ? $pemasukan->harga : null,
+              'labelSelect' => function ($data) {
+                return $data->nama . ' - ' . $data->harga;
+              },
             ],
             'qty' => [
               'label' => 'QTY',

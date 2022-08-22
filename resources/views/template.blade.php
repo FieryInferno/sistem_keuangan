@@ -249,7 +249,7 @@
         let option = '<option></option>';
 
         result.forEach(element => {
-          option += `<option value="${element.id}">${element.nama}</option>`;
+          option += `<option value="${element.id}">${element.nama} - ${element.harga}</option>`;
         });
 
         $(`#${id}`).html(option);

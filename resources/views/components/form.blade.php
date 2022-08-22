@@ -73,7 +73,7 @@
                 @if (isset($value['data']))
                   <option disabled></option>
                   @foreach ($value['data'] as $valueData)
-                    <option value="{{ $valueData->id }}" <?= $value['value'] === $valueData->id ? 'selected' : ''; ?>>{{ $valueData->nama }}</option>
+                    <option value="{{ $valueData->id }}" <?= $value['value'] === $valueData->id ? 'selected' : ''; ?>>{{ isset($value['labelSelect']) ? $value['labelSelect']($valueData) : $valueData->nama }}</option>
                   @endforeach
                 @endif
               </select>
