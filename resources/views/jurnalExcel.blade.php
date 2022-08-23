@@ -51,7 +51,7 @@
                     $harga = $key->barang->harga;
                     break;
                   case 'jasa':
-                    $harga = $key->jasa->harga;
+                    $harga = $key->is_express === 'true' ? $key->tipe->harga + 10000 : $key->tipe->harga;
                     break;
                   
                   default:

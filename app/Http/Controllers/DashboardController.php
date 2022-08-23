@@ -17,7 +17,26 @@ class DashboardController extends Controller
     $bulan = 7;
 
     for ($i=0; $i < 6; $i++) {
-      $data['pemasukan'][$i] = Pemasukan::whereMonth('tanggal', $bulan)->sum(DB::raw('qty * harga'));
+      $pemasukan = Pemasukan::whereMonth('tanggal', $bulan)->get();
+      $totalPemasukan = 0;
+
+      foreach ($pemasukan as $key) {
+        switch ($key->jenis_pemasukan) {
+          case 'barang':
+            $harga = $key->barang->harga;
+            break;
+          case 'jasa':
+            $harga = $key->is_express === 'true' ? $key->tipe->harga + 10000 : $key->tipe->harga;
+            break;
+          
+          default:
+            # code...
+            break;
+        }
+        $totalPemasukan += $harga * $key->qty;
+      }
+
+      $data['pemasukan'][$i] = $totalPemasukan;
       $data['pengeluaran'][$i] = Pengeluaran::whereMonth('tanggal', $bulan)->sum(DB::raw('qty * harga'));
       $bulan++;
     }
@@ -37,7 +56,7 @@ class DashboardController extends Controller
             $harga = $key->barang->harga;
             break;
           case 'jasa':
-            $harga = $key->jasa->harga;
+            $harga = $key->is_express === 'true' ? $key->tipe->harga + 10000 : $key->tipe->harga;
             break;
           
           default:
@@ -49,9 +68,9 @@ class DashboardController extends Controller
 
         if ($key->diskon) {
           $debit += $totalHarga - ($totalHarga * $key->diskon / 100);
+        } else {
+          $debit += $totalHarga;
         }
-
-        $debit += $totalHarga;
       } else {
         $kredit += $key->harga * $key->qty;
       }
