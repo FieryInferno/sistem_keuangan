@@ -6,9 +6,11 @@
         $columns = [
           'Nama Barang' => 'nama',
           'QTY' => 'qty',
-          'Harga' => 'harga',
+          'Harga' => ['render' => function ($data) {
+            return format_rupiah($data->harga);
+          }],
           'Total Harga' => ['render' => function ($data) {
-            return $data->harga * $data->qty;
+            return format_rupiah($data->harga * $data->qty);
           }],
           'Aksi' => ['render' => function ($data) { ?>
             <a href="{{url('barang/' . $data->id . '/edit')}}" class="btn btn-success">Edit</a>

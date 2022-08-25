@@ -24,10 +24,10 @@
           'Harga' => ['render' => function ($data) {
             switch ($data->jenis_pemasukan) {
               case 'barang':
-                return $data->barang->harga;
+                return format_rupiah($data->barang->harga);
                 break;
               case 'jasa':
-                return $data->tipe->harga;
+                return format_rupiah($data->tipe->harga);
                 break;
               
               default:
@@ -63,10 +63,10 @@
             $totalHarga = $harga * $data->qty;
 
             if ($data->diskon) {
-              return $totalHarga - ($totalHarga * $data->diskon / 100);
+              return format_rupiah($totalHarga - ($totalHarga * $data->diskon / 100));
             }
 
-            return $totalHarga;
+            return format_rupiah($totalHarga);
           }],
           'keterangan' => 'keterangan',
           'Aksi' => ['render' => function ($data) { ?>

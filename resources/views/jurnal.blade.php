@@ -42,15 +42,15 @@
               $totalHarga = $harga * $data->qty;
   
               if ($data->diskon) {
-                return $totalHarga - ($totalHarga * $data->diskon / 100);
+                return format_rupiah($totalHarga - ($totalHarga * $data->diskon / 100));
               }
   
-              return $totalHarga;
+              return format_rupiah($totalHarga);
             }
           }],
           'Kredit' => ['render' => function ($data) {
             if ($data->nama_kas_keluar) {
-              return $data->harga * $data->qty;
+              return format_rupiah($data->harga * $data->qty);
             }
           }],
           'Aksi' => ['render' => function ($data) { ?>

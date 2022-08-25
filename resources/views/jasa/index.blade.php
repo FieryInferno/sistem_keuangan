@@ -7,7 +7,7 @@
           'Nama Jasa' => 'nama',
           'Tipe Pelayanan' => ['render' => function ($data) {
             foreach ($data->tipe as $key) { ?>
-              {{ $key->tipe }} : {{ $key->harga }}<br/>
+              {{ $key->tipe }} : {{ format_rupiah($key->harga) }}<br/>
             <?php }
           }],
           'Aksi' => ['render' => function ($data) { ?>

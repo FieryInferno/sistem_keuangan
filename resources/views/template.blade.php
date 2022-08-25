@@ -205,6 +205,22 @@
     }
   }
 
+  const formatRupiah = (angka) => {
+    let number_string = angka.toString().replace(/[^,\d]/g, '').toString(),
+			split = number_string.split(','),
+			sisa = split[0].length % 3,
+			rupiah = split[0].substr(0, sisa),
+			ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+			if(ribuan){
+				separator = sisa ? '.' : '';
+				rupiah += separator + ribuan.join('.');
+			}
+ 
+			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+			return 'Rp. ' + rupiah + ',00';
+		}
+
   $(function () {
     $("#table").DataTable({
       "order": [],
@@ -216,7 +232,7 @@
         var api = this.api();
 
         var intVal = function (i) {
-          return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+          return typeof i === 'string' ? i.toString().replace(/,00/g, '').replace(/[^0-9]/g, '') * 1 : typeof i === 'number' ? i : 0;
         };
 
         totalDebit = api
@@ -233,8 +249,8 @@
             return intVal(a) + intVal(b);
           }, 0);
 
-        $(api.column(5).footer()).html(totalDebit);
-        $(api.column(6).footer()).html(totalKredit);
+        $(api.column(5).footer()).html(formatRupiah(totalDebit));
+        $(api.column(6).footer()).html(formatRupiah(totalKredit));
       },
     });
     $('.select2bs4').select2({theme: 'bootstrap4'});

@@ -7,7 +7,7 @@
           <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>{{ 'Rp ' . number_format($keutungan,2,',','.') }}</h3>
+              <h3>{{ format_rupiah($keutungan) }}</h3>
               <p>Keuntungan</p>
             </div>
             <div class="icon">

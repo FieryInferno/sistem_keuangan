@@ -7,10 +7,12 @@
           'No. Pengeluaran' => 'no_pengeluaran',
           'Tanggal' => 'tanggal',
           'Nama Kas Keluar' => 'nama_kas_keluar',
-          'Harga' => 'harga',
+          'Harga' => ['render' => function ($data) {
+            return format_rupiah($data->harga);
+          }],
           'QTY' => 'qty',
           'Total' => ['render' => function ($data) {
-            return $data->harga * $data->qty;
+            return format_rupiah($data->harga * $data->qty);
           }],
           'Keterangan' => 'keterangan',
           'Aksi' => ['render' => function ($data) { ?>
