@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2022 at 06:40 AM
+-- Generation Time: Aug 29, 2022 at 03:59 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -77,7 +77,8 @@ CREATE TABLE `jasas` (
 --
 
 INSERT INTO `jasas` (`id`, `nama`, `created_at`, `updated_at`) VALUES
-(1, 'Ladies First', '2022-08-22 05:35:10', '2022-08-22 05:35:10');
+(1, 'Ladies First', '2022-08-22 05:35:10', '2022-08-22 05:35:10'),
+(2, 'qwe', '2022-08-28 18:57:50', '2022-08-28 18:57:50');
 
 -- --------------------------------------------------------
 
@@ -206,7 +207,8 @@ CREATE TABLE `tipe_pelayanans` (
 
 INSERT INTO `tipe_pelayanans` (`id`, `jasa_id`, `tipe`, `harga`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Hard', 20000, '2022-08-22 05:35:10', '2022-08-22 05:35:10'),
-(2, 1, 'Normal', 25000, '2022-08-22 05:35:10', '2022-08-22 05:35:10');
+(2, 1, 'Normal', 25000, '2022-08-22 05:35:10', '2022-08-22 05:35:10'),
+(3, 2, 'qwe', 123, '2022-08-28 18:57:50', '2022-08-28 18:57:50');
 
 -- --------------------------------------------------------
 
@@ -325,7 +327,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `jasas`
 --
 ALTER TABLE `jasas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -355,7 +357,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tipe_pelayanans`
 --
 ALTER TABLE `tipe_pelayanans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -379,7 +381,7 @@ ALTER TABLE `pemasukans`
 -- Constraints for table `tipe_pelayanans`
 --
 ALTER TABLE `tipe_pelayanans`
-  ADD CONSTRAINT `tipe_pelayanans_jasa_id_foreign` FOREIGN KEY (`jasa_id`) REFERENCES `jasas` (`id`);
+  ADD CONSTRAINT `tipe_pelayanans_jasa_id_foreign` FOREIGN KEY (`jasa_id`) REFERENCES `jasas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
