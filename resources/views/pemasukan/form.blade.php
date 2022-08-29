@@ -17,22 +17,23 @@
               </div>
             @endif
             <div class="form-group">
-              <label>No. Pemasukan</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Ketik disini..."
-                name="no_pemasukan"
-                value="{{ isset($pemasukan) ? $pemasukan->no_pemasukan : '' }}"
-              >
-            </div>
-            <div class="form-group">
               <label>Tanggal</label>
               <input
                 type="date"
                 class="form-control"
                 name="tanggal"
                 value="{{ isset($pemasukan) ? $pemasukan->tanggal : '' }}"
+                onchange="getNoPemasukan(this)"
+              >
+            </div>
+            <div class="form-group">
+              <label>No. Pemasukan</label>
+              <div class="form-control no_pemasukan">{{ isset($pemasukan) ? $pemasukan->no_pemasukan : '' }}</div>
+              <input
+                type="hidden"
+                name="no_pemasukan"
+                value="{{ isset($pemasukan) ? $pemasukan->no_pemasukan : '' }}"
+                id="no_pemasukan"
               >
             </div>
             <div class="form-group">

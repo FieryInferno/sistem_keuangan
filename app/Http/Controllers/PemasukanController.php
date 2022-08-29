@@ -165,4 +165,14 @@ class PemasukanController extends Controller
   {
     return response()->json(Jasa::find($id)->tipe);
   }
+
+  public function getNoPemasukan(Request $request)
+  {
+    $no_pemasukan = Pemasukan::where('tanggal', '=', $request->query('tanggal'))->max('no_pemasukan');
+
+    if ($no_pemasukan) $no_pemasukan += 1;
+    else $no_pemasukan = 1;
+
+    return response()->json(['no_pemasukan' => $no_pemasukan]);
+  }
 }

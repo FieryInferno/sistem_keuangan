@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
   Route::resource('karyawan', App\Http\Controllers\UserController::class);
   Route::resource('barang', App\Http\Controllers\BarangController::class);
   Route::get('pemasukan/barangJasa', [App\Http\Controllers\PemasukanController::class, 'getBarangJasa']);
+  Route::get('/pemasukan/getNoPemasukan', [App\Http\Controllers\PemasukanController::class, 'getNoPemasukan']);
   Route::get('/pemasukan/getTipePelayanan/{id}', [App\Http\Controllers\PemasukanController::class, 'getTipePelayanan']);
   Route::resource('pemasukan', App\Http\Controllers\PemasukanController::class);
   Route::resource('pengeluaran', App\Http\Controllers\PengeluaranController::class);

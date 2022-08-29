@@ -297,21 +297,6 @@
         tipePelayanan += `
             </select>
           </div>
-          <div class="form-group">
-            <label>Express</label>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="is_express" value="true">
-              <label class="form-check-label" for="exampleRadios1">
-                Ya
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="is_express" value="false">
-              <label class="form-check-label" for="exampleRadios2">
-                Tidak
-              </label>
-            </div>
-          </div>
         `;
 
         $('#tipePelayanan').html(tipePelayanan);
@@ -388,6 +373,17 @@
 
   const hapusField = (urutan) => {
     $(`#field${urutan}`).remove();
+  }
+
+  const getNoPemasukan = (data) => {
+    $.ajax({
+      url : `/pemasukan/getNoPemasukan?tanggal=${data.value}`,
+      type : 'get', 
+      success : function(result) {
+        $('#no_pemasukan').val(result.no_pemasukan);
+        $('.no_pemasukan').html(result.no_pemasukan);
+      }
+    });
   }
 
 </script>

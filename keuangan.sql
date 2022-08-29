@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 03:59 AM
+-- Generation Time: Aug 29, 2022 at 01:47 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -41,7 +41,8 @@ CREATE TABLE `barangs` (
 --
 
 INSERT INTO `barangs` (`id`, `nama`, `qty`, `harga`, `created_at`, `updated_at`) VALUES
-(4, 'Parfum Fabolous Sunday', -2, 10000, '2022-08-22 06:21:30', '2022-08-22 08:35:34');
+(4, 'Parfum Fabolous Sunday', -4, 10000, '2022-08-22 06:21:30', '2022-08-29 04:42:04'),
+(5, 'Parfum Forget THR Sunday', 10, 10000, '2022-08-28 19:01:43', '2022-08-28 19:01:43');
 
 -- --------------------------------------------------------
 
@@ -77,8 +78,7 @@ CREATE TABLE `jasas` (
 --
 
 INSERT INTO `jasas` (`id`, `nama`, `created_at`, `updated_at`) VALUES
-(1, 'Ladies First', '2022-08-22 05:35:10', '2022-08-22 05:35:10'),
-(2, 'qwe', '2022-08-28 18:57:50', '2022-08-28 18:57:50');
+(1, 'Ladies First', '2022-08-22 05:35:10', '2022-08-22 05:35:10');
 
 -- --------------------------------------------------------
 
@@ -146,8 +146,9 @@ CREATE TABLE `pemasukans` (
 --
 
 INSERT INTO `pemasukans` (`id`, `no_pemasukan`, `tanggal`, `jenis_pemasukan`, `jasa_id`, `tipe_id`, `is_express`, `barang_id`, `qty`, `diskon`, `keterangan`, `created_at`, `updated_at`) VALUES
-(4, '123', '2022-08-01', 'jasa', 1, 1, 'true', NULL, 10, 1, 'keterangan', '2022-08-22 08:27:57', '2022-08-22 08:27:57'),
-(5, '123', '2022-08-02', 'barang', NULL, NULL, NULL, 4, 12, NULL, 'ket', '2022-08-22 08:35:34', '2022-08-22 08:35:34');
+(6, '1', '2022-08-29', 'barang', NULL, NULL, NULL, 4, 1, 1, 'keterangan', '2022-08-29 03:48:34', '2022-08-29 03:48:34'),
+(7, '2', '2022-08-29', 'barang', NULL, NULL, NULL, 4, 1, 1, 'ket', '2022-08-29 04:42:03', '2022-08-29 04:42:03'),
+(8, '1', '2022-08-01', 'jasa', 1, 1, 'false', NULL, 1, 1, 'ket', '2022-08-29 04:42:30', '2022-08-29 04:42:30');
 
 -- --------------------------------------------------------
 
@@ -207,8 +208,7 @@ CREATE TABLE `tipe_pelayanans` (
 
 INSERT INTO `tipe_pelayanans` (`id`, `jasa_id`, `tipe`, `harga`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Hard', 20000, '2022-08-22 05:35:10', '2022-08-22 05:35:10'),
-(2, 1, 'Normal', 25000, '2022-08-22 05:35:10', '2022-08-22 05:35:10'),
-(3, 2, 'qwe', 123, '2022-08-28 18:57:50', '2022-08-28 18:57:50');
+(2, 1, 'Normal', 25000, '2022-08-22 05:35:10', '2022-08-22 05:35:10');
 
 -- --------------------------------------------------------
 
@@ -315,7 +315,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barangs`
 --
 ALTER TABLE `barangs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -339,7 +339,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pemasukans`
 --
 ALTER TABLE `pemasukans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pengeluarans`
