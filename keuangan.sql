@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 01:47 PM
+-- Generation Time: Sep 12, 2022 at 10:04 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -147,7 +147,6 @@ CREATE TABLE `pemasukans` (
 
 INSERT INTO `pemasukans` (`id`, `no_pemasukan`, `tanggal`, `jenis_pemasukan`, `jasa_id`, `tipe_id`, `is_express`, `barang_id`, `qty`, `diskon`, `keterangan`, `created_at`, `updated_at`) VALUES
 (6, '1', '2022-08-29', 'barang', NULL, NULL, NULL, 4, 1, 1, 'keterangan', '2022-08-29 03:48:34', '2022-08-29 03:48:34'),
-(7, '2', '2022-08-29', 'barang', NULL, NULL, NULL, 4, 1, 1, 'ket', '2022-08-29 04:42:03', '2022-08-29 04:42:03'),
 (8, '1', '2022-08-01', 'jasa', 1, 1, 'false', NULL, 1, 1, 'ket', '2022-08-29 04:42:30', '2022-08-29 04:42:30');
 
 -- --------------------------------------------------------
@@ -167,6 +166,13 @@ CREATE TABLE `pengeluarans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pengeluarans`
+--
+
+INSERT INTO `pengeluarans` (`id`, `no_pengeluaran`, `tanggal`, `nama_kas_keluar`, `harga`, `qty`, `keterangan`, `created_at`, `updated_at`) VALUES
+(3, '1', '2022-09-12', 'pengeluaran', 50000, 1, 'keterangan', '2022-09-12 00:33:16', '2022-09-12 00:33:16');
 
 -- --------------------------------------------------------
 
@@ -345,7 +351,7 @@ ALTER TABLE `pemasukans`
 -- AUTO_INCREMENT for table `pengeluarans`
 --
 ALTER TABLE `pengeluarans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

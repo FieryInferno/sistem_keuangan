@@ -110,6 +110,12 @@
                 <p>Data Jurnal</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ url('laba_rugi')}}" class="nav-link {{$active === 'laba_rugi' ? 'active' : ''}}">
+                <i class="fas fa-book nav-icon"></i>
+                <p>Laba Rugi</p>
+              </a>
+            </li>
           @endif
         </ul>
       </nav>

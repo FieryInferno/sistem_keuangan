@@ -20,4 +20,7 @@ Route::middleware('auth')->group(function () {
   Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout']);
   Route::get('jurnal', [App\Http\Controllers\JurnalController::class, 'index']);
   Route::get('jurnal/excel', [App\Http\Controllers\JurnalController::class, 'excel']);
+  Route::get('laba_rugi', [App\Http\Controllers\LabaRugiController::class, 'index']);
+  Route::get('laba_rugi/excel', [App\Http\Controllers\LabaRugiController::class, 'excel']);
+  Route::get('laba_rugi/pdf', [App\Http\Controllers\LabaRugiController::class, 'pdf']);
 });
