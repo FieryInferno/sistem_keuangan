@@ -4,7 +4,29 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-header">
-          <a href="{{ url('laba_rugi/pdf') }}" class="btn btn-primary">PDF</a>
+          <form>
+            <div class="row">
+              <div class="col-4">
+                <div class="form-group">
+                  <label>Tanggal Awal</label>
+                  <input type="date" class="form-control" name="tanggal_awal"/>
+                </div>
+                <div class="form-group">
+                  <label>Tanggal Akhir</label>
+                  <input type="date" class="form-control" name="tanggal_akhir"/>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button
+              type="submit"
+              name="pdf"
+              value="pdf"
+              class="btn btn-primary"
+            >
+              PDF
+            </button>
+          </form>
         </div>
         <div class="card-body">
           <table class="table" width="100%">

@@ -11,20 +11,34 @@ use PDF;
 
 class LabaRugiController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $pemasukan = Pemasukan::all();
-    $pengeluaran = Pengeluaran::all();
-    $merged = $pemasukan->merge($pengeluaran);
+    if ($request->query('tanggal_awal')) {
+      $pemasukan = Pemasukan::whereBetween('tanggal', [$request->query('tanggal_awal'), $request->query('tanggal_akhir')])->get();
+      $pengeluaran = Pengeluaran::whereBetween('tanggal', [$request->query('tanggal_awal'), $request->query('tanggal_akhir')])->get();
+    } else {
+      $pemasukan = Pemasukan::all();
+      $pengeluaran = Pengeluaran::all();
+    }
 
-    return view('laba_rugi.index', [
-      'title'       => 'Laba Rugi',
-      'active'      => 'laba_rugi',
+    $merged     = $pemasukan->merge($pengeluaran);
+    $dataArray  = [
       'pemasukan'   => $pemasukan,
       'pengeluaran' => $pengeluaran,
-      'from'        => $merged->min('tanggal'),
-      'to'          => $merged->max('tanggal'),
-    ]);
+      'from'        => $request->query('tanggal_awal') ? $request->query('tanggal_awal') : $merged->min('tanggal'),
+      'to'          => $request->query('tanggal_akhir') ? $request->query('tanggal_akhir') : $merged->max('tanggal'),
+    ];
+
+    if ($request->query('pdf')) {
+      $pdf  = PDF::setOption('isHtml5ParserEnabled', true)->setOption('isRemoteEnabled', true)->loadview('laba_rugi.pdf', $dataArray);
+      
+      return $pdf->stream('laba_rugi.pdf');
+    } else {
+      $dataArray['title']   = 'Laba Rugi';
+      $dataArray['active']  = 'laba_rugi';
+
+      return view('laba_rugi.index', $dataArray);
+    }
   }
 
   // public function excel(Request $request)
