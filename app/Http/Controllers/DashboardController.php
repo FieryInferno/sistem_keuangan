@@ -14,9 +14,9 @@ class DashboardController extends Controller
 {
   public function index()
   {
-    $bulan = 7;
+    $bulan = 1;
 
-    for ($i=0; $i < 6; $i++) {
+    for ($i=0; $i < 12; $i++) {
       $pemasukan = Pemasukan::whereMonth('tanggal', $bulan)->get();
       $totalPemasukan = 0;
 

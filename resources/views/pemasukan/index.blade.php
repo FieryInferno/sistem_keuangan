@@ -43,7 +43,9 @@
             }
           }],
           'QTY' => 'qty',
-          'diskon' => 'diskon',
+          'diskon' => ['render' => function ($data) {
+            return $data->diskon . '%';
+          }],
           'Total Harga' => ['render' => function ($data) {
             $harga = 0;
 

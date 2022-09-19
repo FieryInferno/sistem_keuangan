@@ -13,11 +13,17 @@ class LabaRugiController extends Controller
 {
   public function index()
   {
+    $pemasukan = Pemasukan::all();
+    $pengeluaran = Pengeluaran::all();
+    $merged = $pemasukan->merge($pengeluaran);
+
     return view('laba_rugi.index', [
-      'title' => 'Laba Rugi',
-      'active' => 'laba_rugi',
-      'pemasukan' => Pemasukan::all(),
-      'pengeluaran' => Pengeluaran::all(),
+      'title'       => 'Laba Rugi',
+      'active'      => 'laba_rugi',
+      'pemasukan'   => $pemasukan,
+      'pengeluaran' => $pengeluaran,
+      'from'        => $merged->min('tanggal'),
+      'to'          => $merged->max('tanggal'),
     ]);
   }
 
@@ -48,9 +54,15 @@ class LabaRugiController extends Controller
 
   public function pdf()
   {
+    $pemasukan = Pemasukan::all();
+    $pengeluaran = Pengeluaran::all();
+    $merged = $pemasukan->merge($pengeluaran);
+
     $pdf = PDF::setOption('isHtml5ParserEnabled', true)->setOption('isRemoteEnabled', true)->loadview('laba_rugi.pdf', [
-      'pemasukan' => Pemasukan::all(),
-      'pengeluaran' => Pengeluaran::all(),
+      'pemasukan'   => $pemasukan,
+      'pengeluaran' => $pengeluaran,
+      'from'        => $merged->min('tanggal'),
+      'to'          => $merged->max('tanggal'),
     ]);
     
     return $pdf->stream('laba_rugi.pdf');

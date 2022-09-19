@@ -316,14 +316,14 @@
       const pengeluaran = [];
     
       <?php
-        for ($i = 0; $i < 6; $i++) { ?>
+        for ($i = 0; $i < 12; $i++) { ?>
           pemasukan.push('<?= $data['pemasukan'][$i]; ?>');
           pengeluaran.push('<?= $data['pengeluaran'][$i] ?>');
         <?php }
       ?>
     
       const data = {
-        labels: ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
         datasets: [
           {
             label: 'Pemasukan',

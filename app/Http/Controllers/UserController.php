@@ -47,7 +47,7 @@ class UserController extends Controller
   {
     $user = User::find($id);
 
-    return view('karyawan.index', [
+    return view('karyawan.form', [
       'title' => 'Karyawan',
       'active' => 'karyawan',
       'user' => $user,
@@ -79,6 +79,8 @@ class UserController extends Controller
   public function destroy($id)
   {
     $user = User::find($id);
+
+    $user->delete();
     return redirect('karyawan')->with('success', 'Berhasil hapus karyawan.');
   }
 }

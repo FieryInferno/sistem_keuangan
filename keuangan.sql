@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2022 at 10:04 AM
+-- Generation Time: Sep 19, 2022 at 11:51 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -41,7 +41,7 @@ CREATE TABLE `barangs` (
 --
 
 INSERT INTO `barangs` (`id`, `nama`, `qty`, `harga`, `created_at`, `updated_at`) VALUES
-(4, 'Parfum Fabolous Sunday', -4, 10000, '2022-08-22 06:21:30', '2022-08-29 04:42:04'),
+(4, 'Parfum Fabolous Sunday', -6, 10000, '2022-08-22 06:21:30', '2022-09-18 23:48:50'),
 (5, 'Parfum Forget THR Sunday', 10, 10000, '2022-08-28 19:01:43', '2022-08-28 19:01:43');
 
 -- --------------------------------------------------------
@@ -147,7 +147,8 @@ CREATE TABLE `pemasukans` (
 
 INSERT INTO `pemasukans` (`id`, `no_pemasukan`, `tanggal`, `jenis_pemasukan`, `jasa_id`, `tipe_id`, `is_express`, `barang_id`, `qty`, `diskon`, `keterangan`, `created_at`, `updated_at`) VALUES
 (6, '1', '2022-08-29', 'barang', NULL, NULL, NULL, 4, 1, 1, 'keterangan', '2022-08-29 03:48:34', '2022-08-29 03:48:34'),
-(8, '1', '2022-08-01', 'jasa', 1, 1, 'false', NULL, 1, 1, 'ket', '2022-08-29 04:42:30', '2022-08-29 04:42:30');
+(8, '1', '2022-08-01', 'jasa', 1, 1, 'false', NULL, 1, 1, 'ket', '2022-08-29 04:42:30', '2022-08-29 04:42:30'),
+(9, '1', '2022-12-15', 'barang', NULL, NULL, NULL, 4, 2, 1, 'keterangan', '2022-09-18 23:48:50', '2022-09-18 23:48:50');
 
 -- --------------------------------------------------------
 
@@ -345,7 +346,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pemasukans`
 --
 ALTER TABLE `pemasukans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pengeluarans`
@@ -369,7 +370,7 @@ ALTER TABLE `tipe_pelayanans`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

@@ -8,7 +8,12 @@
 </head>
 <body>
   <div style="text-align:center">
-    <b>Laporan Laba/Rugi</b>
+    <div>
+      <b>Laporan Laba/Rugi</b>
+    </div>
+    <div>
+      <b>Periode {{ $from . '/' . $to }}</b>
+    </div>
   </div>
   <table class="table" width="100%">
     <tbody>

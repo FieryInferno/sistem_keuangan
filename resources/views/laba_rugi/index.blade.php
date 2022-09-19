@@ -10,6 +10,12 @@
           <table class="table" width="100%">
             <tbody>
               <tr>
+                <td>Periode</td>
+                <td>
+                  {{ $from . '/' . $to }}
+                </td>
+              </tr>
+              <tr>
                 <td colspan="2"><b>Pendapatan</b></td>
               </tr>
               <?php $totalPendapatan = 0; ?>
